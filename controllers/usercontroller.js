@@ -2,6 +2,9 @@ import customerschema from "../models/usermodel.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import { verifyToken } from "../middleware/verifytoken.js";
+import { registerEmail } from "../utils/emailservice.js";
+
 
 dotenv.config();
 
