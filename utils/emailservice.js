@@ -135,3 +135,22 @@ export const registerEmail = async(email, userName)=>{
         console.log("Somrthing went wrong in registerEmail:", err);
     }
 }
+
+export const sendDownloadLink = async (email, fileURL, expiryTime) => {
+  try {
+    await transporter.sendMail({
+      from: process.env.EMAIL_USER,
+      to: email,
+      subject: "Your File Download Link ",
+      html: `
+        <p>Hello,</p>
+        <p>You can download your file from the link below:</p>
+        <p><a href="${fileURL}">${fileURL}</a></p>
+        <p><b>Note:</b> This link will expire on <b>${new Date(expiryTime).toLocaleString()}</b>.</p>
+      `,
+    });
+    console.log("Download link email sent");
+  } catch (err) {
+    console.error("Error sending download link email:", err);
+  }
+};
