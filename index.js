@@ -12,8 +12,9 @@ const app = express();
 app.use(express.json());
 app.use("/user", userroutes);
 app.use("/files", fileroutes);
-
-app.listen(port,()=>{
-
-    console.log(`the port is running on post ${port}`);
-})
+app.get("/", (req, res) => {
+  res.send("Welcome to the API");
+});
+app.listen(port, () => {
+  console.log(`the port is running on post ${port}`);
+});
